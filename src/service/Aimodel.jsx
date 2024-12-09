@@ -1,57 +1,14 @@
-// const {
-//   GoogleGenerativeAI,
-//   HarmCategory,
-//   HarmBlockThreshold,
-// } = require("@google/generative-ai");
-// import { GoogleGenerativeAI } from "@google/generative-ai";
-
-// const apiKey = import.meta.env.VITE_GOGGLE_GEMINI_API_KEY;
-// const genAI = new GoogleGenerativeAI(apiKey);
-
-// const model = genAI.getGenerativeModel({
-//   model: "gemini-1.5-flash-8b",
-// });
-
-// const generationConfig = {
-//   temperature: 1.1,
-//   topP: 0.95,
-//   topK: 40,
-//   maxOutputTokens: 8192,
-//   responseMimeType: "application/json",
-// };
-
-// export const chatSession = model.startChat({
-//   generationConfig,
-//   history: [
-//     {
-//       role: "user",
-//       parts: [
-//         {
-//           text: "Generate Travel plan for location :Las Vegas, for 3 Days for Couple with a cheap budget , Give me a Hotels options list with HotelName , Hotel Address , Price  , hotel image url, geo Coordinates , rating , descriptons and suggest itinrary with place Name , place Details, Place image Url , Geo coordinates, ticket Pricing ,Rating,Time travel each of the locations for 3 days with each day plan with best tiem to visit in JSON format",
-//         },
-//       ],
-//     },
-//     {
-//       role: "model",
-//       parts: [
-//         {
-//           text: '```json\n{\n  "trip_details": {\n    "destination": "Las Vegas",\n    "duration": "3 Days",\n    "travelers": "Couple",\n    "budget": "Cheap"\n  },\n  "hotels": [\n    {\n      "hotelName": "Red Rock Inn & Suites",\n      "hotelAddress": "3720 Las Vegas Blvd South, Las Vegas, NV 89109",\n      "price": "$$ (Average $100-$150 per night)",\n      "hotelImageUrl": "https://images.unsplash.com/photo-1599006415646-386c4021f011?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFzIHZlYXNzIGhvdGxlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",\n      "geoCoordinates": "36.1038° N, 115.1678° W",\n      "rating": "4.0",\n      "description": "A budget-friendly option, near the Strip with amenities like an outdoor pool. Check reviews for exact current prices."\n    },\n\t\t{\n\t\t\t"hotelName": "The Cosmopolitan",\n\t\t\t"hotelAddress": "3708 Las Vegas Blvd South, Las Vegas, NV 89109",\n\t\t\t"price": "$$$(Can be found cheaper depending on dates)",\n\t\t\t"hotelImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Cosmopolitan_of_Las_Vegas_hotel_exterior_2018.jpg/1280px-Cosmopolitan_of_Las_Vegas_hotel_exterior_2018.jpg",\n\t\t\t"geoCoordinates": "36.1037° N, 115.1677° W",\n\t\t\t"rating": "4.5",\n      "description": "Luxurious Hotel on The Strip, occasional discounts and last-minute deals can make this option cheap."\n\t\t},\n    {\n      "hotelName": "Circus Circus Hotel and Casino",\n      "hotelAddress": "2880 Las Vegas Blvd S, Las Vegas, NV 89109",\n      "price": "$$ (Average $80-$120 per night)",\n      "hotelImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Circus_Circus_Hotel_and_Casino_2019.jpg/1280px-Circus_Circus_Hotel_and_Casino_2019.jpg",\n      "geoCoordinates": "36.1022° N, 115.1700° W",\n      "rating": "3.5",\n      "description": "Another budget-friendly option, located on the Strip, but may not have the same amenities as others."\n    }\n  ],\n  "itinerary": [\n    {\n      "day": 1,\n      "theme": "Downtown Exploration",\n      "best_time": "Late afternoon/early evening (Avoid peak hours)",\n      "places": [\n        {\n          "placeName": "Fremont Street Experience",\n          "placeDetails": "A lively pedestrian area with a free, spectacular light and music show at night.",\n          "placeImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Fremont_Street_Experience_at_night.jpg/1280px-Fremont_Street_Experience_at_night.jpg",\n          "geoCoordinates": "36.1701° N, 115.1785° W",\n          "ticketPricing": "Free",\n          "rating": "4.5",\n          "time_to_spend": "3-4 hours"\n        },\n\t\t\t\t{\n\t\t\t\t\t"placeName": "Mob Museum",\n\t\t\t\t\t"placeDetails": "Museum focused on organized crime in Las Vegas history.",\n\t\t\t\t\t"placeImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Mob_Museum_Las_Vegas_2019.jpg/1280px-Mob_Museum_Las_Vegas_2019.jpg",\n\t\t\t\t\t"geoCoordinates": "36.1695° N, 115.1773° W",\n\t\t\t\t\t"ticketPricing": "$20-$25",\n\t\t\t\t\t"rating": "4.2",\n\t\t\t\t\t"time_to_spend": "2-3 hours"\n\t\t\t\t}\n      ]\n    },\n    {\n      "day": 2,\n      "theme": "Strip and Shows",\n      "best_time": "Morning/early afternoon",\n      "places": [\n        {\n          "placeName": "The Strip",\n          "placeDetails": "Walk the famed Las Vegas Strip and see the extravagant hotels.",\n          "placeImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Las_Vegas_Strip_at_night.jpg/1280px-Las_Vegas_Strip_at_night.jpg",\n          "geoCoordinates": "36.12° N, 115.17° W",\n          "ticketPricing": "Free (walking)",\n          "rating": "4.0",\n          "time_to_spend": "4-5 hours"\n        },\n        {\n          "placeName": "Show (choose one):",\n          "placeDetails": "Pick a less expensive show (e.g., Cirque du Soleil\'s smaller shows, or a magic show).",\n          "placeImageUrl": null,\n          "geoCoordinates": null,\n          "ticketPricing": "$50 - $150 (depends on the show)",\n          "rating": "4.0",\n          "time_to_spend": "2 hours + show duration"\n        }\n      ]\n    },\n\t\t{\n      "day": 3,\n      "theme": "Nature and Relaxation",\n      "best_time": "Early morning or late afternoon",\n      "places": [\n        {\n          "placeName": "Red Rock Canyon National Conservation Area",\n          "placeDetails": "Beautiful desert landscape with hiking trails and scenic views.",\n          "placeImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Red_Rock_Canyon_NCA.jpg/1280px-Red_Rock_Canyon_NCA.jpg",\n          "geoCoordinates": "36.0695° N, 115.0272° W",\n          "ticketPricing": "$30 (entrance fee)",\n          "rating": "4.8",\n          "time_to_spend": "4-6 hours"\n        }\n      ]\n    }\n  ]\n}\n```',
-//         },
-//       ],
-//     },
-//   ],
-// });
-
-// // const result = await chatSession.sendMessage("INSERT_INPUT_HERE");
-// // console.log(result.response.text());
-
-
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-
-// const apiKey = import.meta.env.VITE_GOGGLE_GEMINI_API_KEY;
+// const ans =VITE_GOGGLE_GEMINI_API_KEY
 const apiKey ="AIzaSyCXHXmYvqZ-TwrFL4PEh_dvPolSuC_PgrQ"
+// const apiKey = process.env.VITE_GOGGLE_GEMINI_API_KEY;
+if (!apiKey) {
+  throw new Error("API key is missing. Please add it to your .env file.");
+}
+
+console.log("API Key:", apiKey);// const apiKey ="AIzaSyCXHXmYvqZ-TwrFL4PEh_dvPolSuC_PgrQ";
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({

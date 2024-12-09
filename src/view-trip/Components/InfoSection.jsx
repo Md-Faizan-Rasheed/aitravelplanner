@@ -13,34 +13,7 @@ function InfoSection({ TripData }) {
 
   useEffect(() => {
     if (location) {
-      // Example with Unsplash API (you need an access key from Unsplash)
-      // const fetchImage = async () => {
-      //   try {
-      //     // const response = await fetch(
-      //     //   `https://api.unsplash.com/search/photos?query=${encodeURIComponent(
-      //     //     location
-      //     //   )}&684142=vexZ532hoZZY8xoU4w4vHDs72PwaXeVwfdWHj0VJ6A4`
-      //     // );
-      //     const response = await axios.get(
-      //       `https://api.unsplash.com/photos/?client_id=vexZ532hoZZY8xoU4w4vHDs72PwaXeVwfdWHj0VJ6A4`
-      //     );
-      //     console.log("fetching doene");
-      //     console.log(response);
-      //     const data = await response.json();
-      //     console.log(data.results);
-      //     if (data.results && data.results.length > 0) {
-      //       setImageUrl(data.results[0].urls.regular); 
-            
-      //       // Use the first image result
-      //     } else {
-      //       setImageUrl("https://via.placeholder.com/800x340?text=Image+Not+Found"); // Fallback
-      //     }
-      //   } catch (error) {
-      //     console.error("Error fetching the image:", error);
-      //     setImageUrl("https://via.placeholder.com/800x340?text=Image+Error"); // Error fallback
-      //   }
-      // };
-
+    
       const fetchImage = async () => {
         try {
           const response = await axios.get(

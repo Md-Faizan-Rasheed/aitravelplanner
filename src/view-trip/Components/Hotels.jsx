@@ -35,6 +35,7 @@ function Hotels({ TripData }) {
         console.error("Error fetching images:", error);
       }
     };
+    console.log(hotelImages);
 
     if (hotels.length > 0) {
       fetchImages();
@@ -57,11 +58,15 @@ function Hotels({ TripData }) {
               rel="noopener noreferrer"
             >
               <div className="mt-3 hover:scale-110 transition-all">
-                <img
-                  className="w-72 rounded-md h-40"
-                  src={hotelImages[index] || 'https://plus.unsplash.com/premium_photo-1661962360690-e91cc0df88f1?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG90ZWwlMjBpbWFnZXN8ZW58MHx8MHx8fDA%3D'}
-                  alt={hotel.HotelName || 'Hotel'}
-                />
+              <img
+              className="w-72 rounded-md h-40"
+              src={
+              hotelImages[index]               ? hotelImages[index]
+                : 'https://plus.unsplash.com/premium_photo-1661962360690-e91cc0df88f1?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG90ZWwlMjBpbWFnZXN8ZW58MHx8MHx8fDA%3D'
+                }
+              alt={hotel?.HotelName || 'Hotel'}
+             />
+
                 <h2 className="font-semibold">{hotel.HotelName}</h2>
                 <p className="text-sm text-gray-600">
                   📍 {hotel.HotelAddress.length > 22
